@@ -1,7 +1,7 @@
 profile: "${PROFILE}"
 lcp:
-  host: "${LSD_HOST}"
-  port: ${LSD_PORT}
+  host: "${LCP_HOST}"
+  port: ${LCP_PORT}
   public_base_url: "${LCP_BASE_URL}"
   database: "${DB_URI}"
   auth_file: "${AUTH_FILE}"
@@ -18,15 +18,15 @@ lsd_notify_auth:
   password: "${LSD_NOTIFY_AUTH_PASS}"
 
 storage:
-  Mode: "s3" # be carefull need upercase
-  Endpoint: "${S3_ENDPOINTS}"
+  mode: "s3" # be carefull need upercase
+  endpoint: "${S3_ENDPOINTS}"
   access_id: "${S3_ACCESS_ID}"
   disable_ssl: ${S3_DISABLE_SSL_BOOL}
-  Secret: "${S3_SECRET}"
-  Bucket: "${S3_BUCKET}"
-  Region: "${S3_REGION}"
-  Token: "${S3_TOKEN}"
-  PathStyle: true
+  secret: "${S3_SECRET}"
+  bucket: "${S3_BUCKET}"
+  region: "${S3_REGION}"
+  token: "${S3_TOKEN}"
+  pathStyle: true
 
 localization:
   languages: ${LOCALIZATION_LANGUAGES_ARRAY} # ["en-US"]

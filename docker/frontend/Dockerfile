@@ -7,10 +7,10 @@ COPY . /lcp/.
 
 RUN apt-get update \
     && apt-get install -y make curl git \
-    && curl -O https://nodejs.org/dist/v18.12.1/node-v18.12.1-linux-arm64.tar.gz \
-    && tar -xzf node-v18.12.1-linux-arm64.tar.gz
+    && curl -O https://nodejs.org/dist/v18.12.1/node-v18.12.1-linux-x64.tar.gz \
+    && tar -xzf node-v18.12.1-linux-x64.tar.gz
 
-RUN PATH=/lcp/node-v18.12.1-linux-arm64/bin:$PATH make "frontend/manage"
+RUN PATH=/lcp/node-v18.12.1-linux-x64/bin:$PATH make "frontend/manage"
 
 
 FROM golang:alpine as frontend-builder

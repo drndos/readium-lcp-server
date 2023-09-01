@@ -9,6 +9,7 @@ import (
 	"os"
 	"strings"
 
+	"github.com/readium/readium-lcp-server/config"
 	"github.com/readium/readium-lcp-server/storage"
 )
 
@@ -18,7 +19,7 @@ func StoreS3Publication(inputPath, storagePath, name string) error {
 
 	s3Split := strings.Split(storagePath, ":")
 
-	s3conf := storage.S3Config{}
+	s3conf := s3ConfigFromYAML()
 	s3conf.Region = s3Split[1]
 	s3conf.Bucket = s3Split[2]
 
@@ -51,4 +52,21 @@ func cleanupTempFile(f *os.File) {
 	}
 	f.Close()
 	os.Remove(f.Name())
+}
+
+func s3ConfigFromYAML() storage.S3Config {
+	s3config := storage.S3Config{}
+
+	s3config.ID = config.Config.Storage.AccessId
+	s3config.Secret = config.Config.Storage.Secret
+	s3config.Token = config.Config.Storage.Token
+
+	s3config.Endpoint = config.Config.Storage.Endpoint
+	s3config.Bucket = config.Config.Storage.Bucket
+	s3config.Region = config.Config.Storage.Region
+
+	s3config.DisableSSL = config.Config.Storage.DisableSSL
+	s3config.ForcePathStyle = config.Config.Storage.PathStyle
+
+	return s3config
 }
